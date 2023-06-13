@@ -1,0 +1,35 @@
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.page-body {
+  background-color: #658354;
+  height: calc(100vh - 70px);
+}
+
+.loader {
+  position: relative;
+  margin: auto;
+  top: 250px;
+  border: 16px solid #dddddd; /* Light grey */
+  border-top: 16px solid #5D952D;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+}
+
+.text {
+  position: relative;
+  top: 440px;
+  font-family: sans-serif;
+  color: #dddddd;
+  text-align: center;
+}
+
+.back-image {
+  position: absolute;
+  top: 370px;
+  height: 200px;
+}

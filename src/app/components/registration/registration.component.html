@@ -1,0 +1,23 @@
+<div class="survey-body">
+  <div class="title-box">
+    <p>Удобная и доступная терапия с <span class="neon-green">Komek.</span></p>
+  </div>
+
+  <div class="survey-box">
+    <div class="text-title">{{title}}</div>
+    <div class="line"></div>
+    <div>
+      <input class="input-box" placeholder="Email адресс" type="email" [(ngModel)]="emailValue" [attr.valid]="emailValid" (keypress)="emailChanged()">
+    </div>
+    <div>
+      <input class="input-box" placeholder="Пароль" type="password" [(ngModel)]="passValue" [attr.valid]="passwordValid" (keypress)="passChanged()">
+    </div>
+    <div class="login-button" (click)="login(emailValue, passValue)">
+      <p>Подтвердить</p>
+    </div>
+  </div>
+
+  <div class="back-image">
+    <img src="../../../assets/back-image.png">
+  </div>
+</div>

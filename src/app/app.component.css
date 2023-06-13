@@ -1,0 +1,54 @@
+header {
+  height: 70px;
+  overflow: auto;
+}
+
+.logo {
+  margin-left: 50px;
+  margin-top: 10px;
+  width: 50px;
+  float: left;
+}
+
+.logo-text {
+  margin-top: 10px;
+  color: black;
+  font-family: sans-serif;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 54px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.login-box {
+  position: absolute;
+  display: inline-block;
+  float: right;
+  top: 10px;
+  right: 10px;
+  width: 170px;
+  height: 50px;
+  background-color: #dedede;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.login-box:hover {
+  background-color: #cecece;
+}
+
+.profile-logo {
+  margin-top: 8px;
+  margin-left: 18px;
+  height: 30px;
+}
+
+.profile-text {
+  position: relative;
+  top: -5px;
+  margin-left: 20px;
+  display: inline-block;
+  font-family: sans-serif;
+  font-weight: 500;
+}

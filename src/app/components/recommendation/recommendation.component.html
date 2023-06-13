@@ -1,0 +1,135 @@
+<div class="page-body">
+  <div class="best-match-box align-center">
+    <div class="match-title">Самый подходящий под вашу анкету психолог</div>
+    <div class="match-box">
+      <div class="match-left">
+        <img class="spec-img" src="assets/{{specialists[0].image}}">
+<!--        <a href="//api.whatsapp.com/send?phone={{wtPhone}}&text={{wtText}}">-->
+          <button class="btn-chat" (click)="openDialog()">
+<!--            <img class="wt-logo" src="../../../assets/wt.png">-->
+            <div class="wt-text">
+              Выбрать
+            </div>
+          </button>
+<!--        </a>-->
+
+      </div>
+      <div class="match-right">
+
+        <div class="spec-fullname">
+          {{specialists[0].fullname}}
+        </div>
+        <div class="topics-box">
+          <div class="topics-title">Темы психотерапии</div>
+          <div class="topic-box" *ngFor="let topic of specialists[0].topics">
+            {{topic}}
+          </div>
+        </div>
+        <div class="topics-box">
+          <div class="topics-title">Подходы психотерапии</div>
+          <div class="topic-box method-box" *ngFor="let method of specialists[0].methods">
+            {{method}}
+          </div>
+        </div>
+
+        <div class="topics-box">
+          <div class="topics-title">О психотерапевте</div>
+          <div class="about-parent-box">
+            <div class="about-box">
+              <div class="inline">
+                <img class="experience-img" src="../../../assets/experience.png"/>
+              </div>
+              <div class="inline about-text">
+                {{specialists[0].experience}}
+              </div>
+            </div>
+            <div class="about-box">
+              <div class="inline">
+                <img class="experience-img" src="../../../assets/diploma.png"/>
+              </div>
+              <div class="inline about-text">
+                {{specialists[0].diploma}}
+              </div>
+            </div>
+            <div class="about-box">
+              <div class="inline">
+                <img class="experience-img" src="../../../assets/up.png"/>
+              </div>
+              <div class="inline about-text">
+                {{specialists[0].courses}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="spec-description">{{specialists[0].description}}</div>
+      </div>
+    </div>
+  </div>
+  <div class="other-match-box align-center">
+    <div class="match-title">Другие психологи, которые могут вам подойти</div>
+    <div class="match-box" *ngFor="let spec of specialists | slice:1; let i = index" >
+
+      <div class="match-left">
+        <img class="spec-img" src="assets/{{spec.image}}">
+<!--        <a href="//api.whatsapp.com/send?phone={{wtPhone}}&text={{wtText}}">-->
+          <button class="btn-chat" (click)="openDialog()">
+<!--            <img class="wt-logo" src="../../../assets/wt.png">-->
+            <div class="wt-text">
+              Выбрать
+            </div>
+          </button>
+<!--        </a>-->
+      </div>
+      <div class="match-right">
+
+        <div class="spec-fullname">
+          {{spec.fullname}}
+        </div>
+        <div class="topics-box">
+          <div class="topics-title">Темы психотерапии</div>
+          <div class="topic-box" *ngFor="let topic of spec.topics">
+            {{topic}}
+          </div>
+        </div>
+        <div class="topics-box">
+          <div class="topics-title">Подходы психотерапии</div>
+          <div class="topic-box method-box" *ngFor="let method of spec.methods">
+            {{method}}
+          </div>
+        </div>
+
+        <div class="topics-box">
+          <div class="topics-title">О психотерапевте</div>
+          <div class="about-parent-box">
+            <div class="about-box">
+              <div class="inline">
+                <img class="experience-img" src="../../../assets/experience.png"/>
+              </div>
+              <div class="inline about-text">
+                {{spec.experience}}
+              </div>
+            </div>
+            <div class="about-box">
+              <div class="inline">
+                <img class="experience-img" src="../../../assets/diploma.png"/>
+              </div>
+              <div class="inline about-text">
+                {{spec.diploma}}
+              </div>
+            </div>
+            <div class="about-box">
+              <div class="inline">
+                <img class="experience-img" src="../../../assets/up.png"/>
+              </div>
+              <div class="inline about-text">
+                {{spec.courses}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="spec-description">{{spec.description}}</div>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-invisible"></div>
+</div>
