@@ -11,7 +11,7 @@ import { map } from 'rxjs/operators';
 export class AuthService {
 
   constructor(private http: HttpClient) {
-    var initLogged = true;
+    var initLogged = false;
     if (initLogged) {
       this.currentUser = {
         jwt: 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjg2NjY5NTUxLCJleHAiOjE2ODY3NTU5NTF9.cdUovnt-ObrjltbmhZ4wnldIebDyv7MvG6MectYOYZ_T5SG40GgIZ7pHkbWjB71YX-kH8ECrX4_3Yv0IAMkmpg',
