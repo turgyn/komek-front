@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import { map } from 'rxjs/operators';
+import {Observable} from "rxjs";
+
 
 @Injectable({
   providedIn: 'root'
@@ -9,10 +12,14 @@ export class QuestionService {
   constructor(private http: HttpClient) {
   }
 
-  apiUrl = 'http://localhost:8080/api/survey'
+  // apiUrl = 'http://localhost:8080/api/survey'
+  apiUrl = 'http://77.243.80.191:8080/api/survey';
 
-  getQuestions() {
-    return this.http.get<any>(this.apiUrl)
+  getQuestions(): Observable<any> {
+    return this.http.get<any>(this.apiUrl).pipe(map(res=> {
+      console.log(res)
+      return res;
+    }))
   }
 }
 
