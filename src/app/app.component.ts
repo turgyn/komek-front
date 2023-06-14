@@ -7,7 +7,7 @@ import {AuthService} from "./services/auth.service";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  stage: number = 4
+  stage: number = 1
   title = 'komek-angular-cabinet';
 
   constructor(private authService: AuthService) {
