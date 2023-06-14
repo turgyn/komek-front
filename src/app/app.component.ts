@@ -7,7 +7,7 @@ import {AuthService} from "./services/auth.service";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  stage: number = 1
+  stage: number = 4
   title = 'komek-angular-cabinet';
 
   constructor(private authService: AuthService) {
@@ -15,6 +15,11 @@ export class AppComponent {
 
   isLogged(): boolean {
     return this.authService.isLogged();
+  }
+
+  getFullName(): string {
+    // @ts-ignore
+    return this.authService.currentUser.fullName;
   }
 
   nextStage() {

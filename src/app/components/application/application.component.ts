@@ -1,14 +1,21 @@
-import { Component } from '@angular/core';
+import {Component, ViewEncapsulation} from '@angular/core';
 import {MatDialogRef} from "@angular/material/dialog";
+import {AuthService} from "../../services/auth.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-application',
   templateUrl: './application.component.html',
-  styleUrls: ['./application.component.css']
+  styleUrls: ['./application.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ApplicationComponent {
 
-  constructor(private dialogRef: MatDialogRef<ApplicationComponent>) {
+  phoneNumber?: string;
+
+  constructor(private dialogRef: MatDialogRef<ApplicationComponent>, private authService: AuthService, private snackBar: MatSnackBar) {
+    this.phoneNumber = authService.currentUser?.phoneNumber
+    console.log(this.phoneNumber);
   }
 
   closeDialog() {
@@ -16,11 +23,12 @@ export class ApplicationComponent {
     console.log(this.dialogRef);
   }
 
-  cancelClick() {
+  confirmClick() {
     this.closeDialog();
+    this.snackBar.open('Отправлено')
   }
 
-  confirmClick() {
+  closeApplication() {
     this.closeDialog();
   }
 }

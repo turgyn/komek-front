@@ -27,7 +27,7 @@ export class RecommendationComponent {
     }
     this.dialogRef = this.dialog.open(ApplicationComponent, {
         width: '400px',
-        height: '600px',
+        height: '300px',
       });
     this.dialogRef.afterClosed().subscribe(res => {
       console.log(res);

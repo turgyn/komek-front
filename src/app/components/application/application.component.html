@@ -1,13 +1,14 @@
 <div class="title">
-  Подвердите ваш номер телефона
-</div>
-<div class="personal-data">
-  <p>87762266878</p> <a>Редактировать личные данные</a>
+  <p>Оставить заявку</p>
+  <mat-icon class="btn-close" (click)="closeApplication()">close</mat-icon>
 </div>
 <div class="description">
   <p>Наш менеджер свяжеться с вами для дальнеиших шагов<p>
+  <p>Ваш номер: <span class="phoneNumber">{{phoneNumber}}</span></p>
 </div>
 <div class="buttons">
-  <input type="button" value="Отмена" (click)="cancelClick()">
-  <input type="button" value="Подтвердить" (click)="confirmClick()">
+
+  <button class="button" (click)="confirmClick()">
+    Отправить
+  </button>
 </div>
