@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {AuthService} from "../../services/auth.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-authentication',
@@ -13,7 +14,11 @@ export class AuthenticationComponent {
   registrationErrors = '';
   isLoading = false;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {
+    if (this.authService.isLogged()) {
+      this.router.navigate(['specialists'])
+    }
+  }
 
   registrationForm = new FormGroup({
     phoneNumber: new FormControl('', [Validators.required, Validators.pattern("(\\+7 \\(7)[0-9]{2}(\\)\\-)[0-9]{3}(\\-)[0-9]{2}(\\-)[0-9]{2}")]),

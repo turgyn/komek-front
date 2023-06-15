@@ -1,1 +1,66 @@
-<p>profile works!</p>
+<div class="page-body">
+  <div class="best-match-box align-center">
+    <div class="match-title">Настроики профиля</div>
+    <div class="match-box">
+      <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="form">
+        <div class="text-title"></div>
+        <div class="line"></div>
+
+        <mat-form-field appearance="outline" class="field">
+          <mat-label>Номер телефона</mat-label>
+          <input matInput formControlName="phoneNumber" required placeholder="+7 (7xx)-xxx-xx-xx" (keypress)="fillingPhone($event)">
+          <mat-icon matSuffix>phone</mat-icon>
+          <mat-error *ngIf="userForm.controls.phoneNumber.invalid">{{getPhoneNumberErrorMessage()}}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="field">
+          <mat-label>ФИО</mat-label>
+          <input matInput formControlName="fullName" required placeholder="Тургын Дархан" maxlength="30">
+          <mat-icon matSuffix>text-format</mat-icon>
+          <mat-error *ngIf="userForm.controls.fullName.invalid">{{getFullNameErrorMessage()}}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="field">
+          <mat-label>Старый пароль</mat-label>
+          <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" required maxlength="40">
+          <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+            <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error *ngIf="userForm.controls.password.invalid">{{getPasswordErrorMessage()}}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="field">
+          <mat-label>Новый пароль</mat-label>
+          <input matInput [type]="hidePasswordNew ? 'password' : 'text'" formControlName="passwordNew" maxlength="40">
+          <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+            <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error *ngIf="userForm.controls.passwordNew.invalid">{{getPasswordNewErrorMessage()}}</mat-error>
+        </mat-form-field>
+
+        <div class="exists-error-box" *ngIf="registrationErrors == 'phoneNumberTaken'">
+          <p class="exists-error-title"><span class="dark-red">Пользователь с данным номером телефона уже существует.</span>
+            <a class="go-login">Войти</a>
+          </p>
+        </div>
+        <div class="exists-error-box" *ngIf="registrationErrors == 'unknown'">
+          <p class="exists-error-title"><span class="dark-red">Неизвестная ошибка. Попробуйте позже.</span>
+          </p>
+        </div>
+
+        <div class="outer-btn">
+          <button class="btn submit-btn" type="submit" mat-raised-button color="primary" [disabled]="!userForm.valid">Подтвердить</button>
+        </div>
+
+        <div class="outer-btn">
+          <button class="btn logout-btn" mat-raised-button color="warn" (click)="logout()">Выити</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+  <div class="back-image">
+    <img src="../../../assets/back-image.png">
+  </div>
+</div>

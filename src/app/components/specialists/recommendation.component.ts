@@ -25,7 +25,7 @@ export class RecommendationComponent {
     this.specialists = specialistService.getSpecialists();
     setTimeout(() => {
       this.isLoading = false;
-    }, 2000)
+    }, 3000)
   }
 
   openDialog(): void {

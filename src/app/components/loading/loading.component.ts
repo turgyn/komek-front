@@ -18,20 +18,25 @@ export class LoadingComponent {
       this.texts = ['Создаем вам новый профиль...']
     else if (this.router.url == '/specialists')
       this.texts = ['Подбираем подходящих специалистов...', 'Еще чуть чуть ...']
+    else if (this.router.url == '/signin')
+      this.texts = ['Аутентифицируем']
     this.recursiveUpdater();
   }
 
   recursiveUpdater(): void {
-    if (this.router.url != '/signup' && this.router.url != '/specialists') return;
+    let list = ['/signup', '/signin', '/specialists'];
+    if (list.indexOf(this.router.url) == -1) return;
     if (this.idx == this.texts.length) {
-      this.router.navigate(['specialists'])
+      if (this.router.url != '/specialists')
+        this.router.navigate(['specialists'])
       return;
     }
     this.loadText = this.texts[this.idx];
     this.idx++;
     setTimeout(() => {
+      console.log('rec')
       this.recursiveUpdater();
-    }, 2000);
+    }, 1500);
   }
 
 }
