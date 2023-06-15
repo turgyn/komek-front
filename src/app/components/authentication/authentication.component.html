@@ -1,0 +1,49 @@
+<app-loading *ngIf="isLoading"></app-loading>
+
+<div class="survey-body" *ngIf="!isLoading">
+  <div class="title-box">
+    <p>Удобная и доступная терапия с <span class="neon-green">Komek.</span></p>
+  </div>
+
+  <div class="survey-box">
+    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+      <div class="text-title">{{title}}</div>
+      <div class="line"></div>
+
+      <mat-form-field appearance="outline" class="field">
+        <mat-label>Номер телефона</mat-label>
+        <input matInput formControlName="phoneNumber" required placeholder="+7 (7xx)-xxx-xx-xx" (keypress)="fillingPhone($event)">
+        <mat-icon matSuffix>phone</mat-icon>
+        <mat-error *ngIf="registrationForm.controls.phoneNumber.invalid">{{getPhoneNumberErrorMessage()}}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="field">
+        <mat-label>Придумайте пароль</mat-label>
+        <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" required maxlength="40">
+        <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+          <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="registrationForm.controls.password.invalid">{{getPasswordErrorMessage()}}</mat-error>
+      </mat-form-field>
+
+      <div class="exists-error-box" *ngIf="registrationErrors == 'phoneNumberNotFound'">
+        <p class="exists-error-title"><span class="dark-red">Пользователь не найден. Начните регистрацию с заполнения анкеты.</span>
+          <a class="go-login" routerLink="/survey">Перейти к анкете</a>
+        </p>
+      </div>
+      <div class="exists-error-box" *ngIf="registrationErrors == 'unknown'">
+        <p class="exists-error-title"><span class="dark-red">Неизвестная ошибка. Попробуйте позже.</span>
+        </p>
+      </div>
+
+      <div class="outer-btn">
+        <button class="btn" type="submit" mat-raised-button color="primary" [disabled]="!registrationForm.valid">Подтвердить</button>
+      </div>
+
+    </form>
+  </div>
+
+  <div class="back-image">
+    <img src="../../../assets/back-image.png">
+  </div>
+</div>

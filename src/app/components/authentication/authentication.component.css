@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+.survey-body {
+  background-color: #658354;
+  height: calc(100vh - 70px);
+}
+
+.title-box {
+  /*font-family: Open-Sans;*/
+  padding-top: 100px;
+  font-family: Open Sans;
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 54px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: #FFFFFF;
+  /*width: 900px;*/
+}
+
+.neon-green {
+  color: #C5F89A;
+}
+
+.survey-box {
+  background-color: #FFFFFF;
+  width: 500px;
+  margin: auto;
+  /*height: 400px;*/
+  padding: 40px;
+  border-radius: 50px;
+}
+
+.text-title, .text-description {
+  text-align: center;
+  font-family: sans-serif;
+}
+
+.line {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  height: 1px;
+  width: 100%;
+  /*width: 5px;*/
+  background-color: #C1C1C1;
+}
+
+.field {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.outer-btn {
+  width: fit-content;
+  /*background-color: #014f0D;*/
+  margin: auto;
+}
+
+.btn {
+  width: 300px;
+  margin: auto;
+}
+
+.exists-error-box {
+
+}
+
+.exists-error-title {
+  text-align: center;
+}
+
+.dark-red {
+  color: #af0000
+}
+
+.go-login {
+  margin-left: 10px;
+  cursor: pointer;
+  font-family: "Times New Roman";
+  font-weight: 500;
+}
+
+.back-image {
+  position: absolute;
+  top: 370px;
+}

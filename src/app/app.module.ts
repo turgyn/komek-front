@@ -18,6 +18,8 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import { AppRoutingModule } from './app-routing.module';
+import { AuthenticationComponent } from './components/authentication/authentication.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { AppRoutingModule } from './app-routing.module';
     RegistrationComponent,
     RecommendationComponent,
     LoadingComponent,
-    ApplicationComponent
+    ApplicationComponent,
+    AuthenticationComponent,
+    ProfileComponent
   ],
   imports: [
     AppRoutingModule,

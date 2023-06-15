@@ -3,7 +3,7 @@
     <img class="logo-img" src="assets/logo.png" alt="Logo" />
     <div class="logo-text">KOMEK</div>
   </div>
-  <div class="login-box" *ngIf="!isLogged()">
+  <div class="login-box" *ngIf="!isLogged()" routerLink="/signin">
     <img class="profile-logo" src="assets/profile.png" alt="Profile" />
     <div class="profile-text">Войти</div>
   </div>
