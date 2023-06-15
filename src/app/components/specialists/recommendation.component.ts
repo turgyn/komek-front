@@ -16,13 +16,53 @@ export class RecommendationComponent {
   dialogRef?: MatDialogRef<ApplicationComponent>
   isLoading = true;
 
-  specialists: Specialist[];
+  specialists: Specialist[] =
+    [
+    {
+      id: 1,
+      fullname: '', //r['fullname'],
+      topics: [''],
+      methods: [''],
+      image: '',
+      experience: '',
+      diploma: '',
+      courses: '',
+      description: ''
+    }];
 
   constructor(private specialistService: SpecialistService, public dialog: MatDialog, private router: Router, private authService: AuthService) {
     if (!this.authService.isLogged()) {
       this.router.navigate(['survey'])
     }
-    this.specialists = specialistService.getSpecialists();
+    // this.specialists =
+      specialistService.getSpecialists().subscribe(res => {
+        this.specialists = []
+        for (let r of res) {
+          console.log(r);
+          console.log(r['id'])
+          let spec: Specialist = r;
+          // console.log('spec')
+          // console.log(spec)
+          // console.log(typeof spec)
+          spec.image = 'specialists/' + spec.image;
+          this.specialists.push(
+            spec
+            // {
+            //
+            //   id: 1,
+            //   fullname: '', //r['fullname'],
+            //   topics: [''],
+            //   methods: [''],
+            //   image: '',
+            //   experience: '',
+            //   diploma: '',
+            //   courses: '',
+            //   description: ''
+            // }
+          );
+          console.log(this.specialists);
+        }
+      })
     setTimeout(() => {
       this.isLoading = false;
     }, 3000)

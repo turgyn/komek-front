@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../../services/auth.service";
 import {Router} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-profile',
@@ -21,7 +22,7 @@ export class ProfileComponent implements OnInit {
     passwordNew: new FormControl('', [Validators.minLength(8), Validators.pattern("^(?=.*?[A-Za-z])(?=.*?[0-9]).{8,}$")]),
   })
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private authService: AuthService, private router: Router, private snackBar: MatSnackBar) {
     if (!this.authService.isLogged()) {
       this.router.navigate(['survey'])
     }
@@ -54,7 +55,7 @@ export class ProfileComponent implements OnInit {
         this.isLoading = true;
         this.userForm.controls.password.setValue('');
         this.userForm.controls.passwordNew.setValue('');
-
+        this.snackBar.open('Изменения внесены')
       }, error => {
         console.log(error);
         if (error.error.message == 'Error: PhoneNumber is already taken!') {

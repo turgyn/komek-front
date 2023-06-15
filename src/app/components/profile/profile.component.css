@@ -8,7 +8,7 @@
 }
 
 .align-center {
-  width: 500px;
+  width: 600px;
   margin: auto;
 }
 
@@ -46,8 +46,9 @@
 }
 
 .field {
-  margin-left: 120px;
+  margin-left: 100px;
   margin-top: 10px;
+  width: 400px;
 }
 
 .form {
@@ -55,24 +56,16 @@
 }
 
 .outer-btn {
+  margin-top: 10px;
   margin-bottom: 10px;
 }
 
 .btn {
-  margin-left: 120px;
+  margin-left: 170px;
   width: 250px;
 }
 
-.submit-btn {
-
-}
-
-.logout-btn {
-  /*margin-top: 20px;*/
-}
-
 .mat-errorc {
-
   background-color: red;
   color: red;
 }

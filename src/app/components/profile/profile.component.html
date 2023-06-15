@@ -32,6 +32,7 @@
         <mat-form-field appearance="outline" class="field">
           <mat-label>Новый пароль</mat-label>
           <input matInput [type]="hidePasswordNew ? 'password' : 'text'" formControlName="passwordNew" maxlength="40">
+          <mat-hint>Оставьте поле пустым, если не хотите изменять пароль</mat-hint>
           <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
             <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>

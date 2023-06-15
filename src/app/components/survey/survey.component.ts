@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {QuestionService} from "../../services/question.service";
+import {SurveyService} from "../../services/survey.service";
 import {Question} from "../../models/question";
 import {Router} from "@angular/router";
 import {AuthService} from "../../services/auth.service";
@@ -14,8 +14,9 @@ export class SurveyComponent implements OnInit{
   help_yourself = 'Помогите нам подобрать вам подходящего терапевта.'
   questions: Question[] = [{title: 't', options: []}]; //Question[] = []
   curIdx = 0
+  feedbacks: string[] = [];
 
-  constructor(private questionService: QuestionService, private router: Router, private authService: AuthService) {
+  constructor(private questionService: SurveyService, private router: Router, private authService: AuthService) {
   }
 
   ngOnInit(): void {
@@ -26,9 +27,19 @@ export class SurveyComponent implements OnInit{
     )
   }
 
-  showNextQuestion(): void {
+  showNextQuestion(f: string): void {
+    this.feedbacks.push(f);
     this.curIdx++;
     if (this.curIdx == this.questions.length) {
+      console.log(this.feedbacks);
+      if (this.authService.isLogged()) {
+          this.questionService.postFeedback(this.feedbacks).subscribe(res => {
+          console.log(res);
+        })
+      }
+      else {
+        localStorage.setItem('feedbacks', JSON.stringify(this.feedbacks));
+      }
       this.startRegistration()
     }
   }

@@ -22,8 +22,8 @@ export class AuthService {
     }
   }
 
-  apiUrl = 'http://localhost:8080/api/auth';
-  // apiUrl = 'http://77.243.80.191:8080/api/auth';
+  // apiUrl = 'http://localhost:8080/api/auth';
+  apiUrl = 'http://77.243.80.191:8080/api/auth';
   public currentUser?: AuthDto = undefined;
 
   signup(phoneNumber: string, fullName: string, password: string): Observable<any> {

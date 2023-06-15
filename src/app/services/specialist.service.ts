@@ -1,16 +1,32 @@
 import { Injectable } from '@angular/core';
 import {Specialist} from "../models/specialist";
 import {Question} from "../models/question";
-import {QuestionService} from "./question.service";
+import {SurveyService} from "./survey.service";
+import {HttpClient} from "@angular/common/http";
+import {AuthService} from "./auth.service";
+import { map } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class SpecialistService {
 
-  constructor() { }
+  constructor(private http: HttpClient, private authService: AuthService) {
+  }
 
-  getSpecialists(): Specialist[] {
+  // apiUrl = 'http://localhost:8080/api/recommendation';
+  apiUrl = 'http://77.243.80.191:8080/api/recommendation';
+
+  getSpecialists() {
+    return this.http.get<any>(this.apiUrl, {
+      headers: {'Authorization': this.authService.currentUser!.jwt}
+    }).pipe(map(res => {
+      return res.specialists;
+    }))
+  }
+
+  getSpecialists1(): Specialist[] {
     var arr = [
       {
         id: 2,

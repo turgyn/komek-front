@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {AuthService} from "../../services/auth.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
+import {SurveyService} from "../../services/survey.service";
 
 @Component({
   selector: 'app-registration',
@@ -15,7 +16,7 @@ export class RegistrationComponent {
   registrationErrors = '';
   isLoading = false;
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private authService: AuthService, private router: Router, private surveyService: SurveyService) {
     if (this.authService.isLogged()) {
       this.router.navigate(['specialists'])
     }
@@ -38,6 +39,11 @@ export class RegistrationComponent {
     this.authService.signup(phoneNumber, fullName, password).subscribe(
       res => {
         this.isLoading = true;
+        const storedArrayString = localStorage.getItem('feedbacks');
+        const storedArray: string[] = JSON.parse(storedArrayString!);
+        this.surveyService.postFeedback(storedArray).subscribe(res => {
+          console.log('send feedback after reg')
+        })
       }, error => {
         console.log(error);
         if (error.error.message == 'Error: PhoneNumber is already taken!') {

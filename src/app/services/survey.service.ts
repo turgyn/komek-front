@@ -2,14 +2,15 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import { map } from 'rxjs/operators';
 import {Observable} from "rxjs";
+import {AuthService} from "./auth.service";
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class QuestionService {
+export class SurveyService {
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private authService: AuthService) {
   }
 
   // apiUrl = 'http://localhost:8080/api/survey'
@@ -20,6 +21,14 @@ export class QuestionService {
       console.log(res)
       return res;
     }))
+  }
+
+  postFeedback(feedbacks: string[]): Observable<any> {
+    return this.http.post(this.apiUrl, {
+      feedbacks: feedbacks
+    }, {
+      headers: {"Authorization": this.authService.currentUser!.jwt}
+    });
   }
 }
 

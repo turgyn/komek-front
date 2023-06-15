@@ -8,7 +8,7 @@
     <div class="line"></div>
     <div class="text-description">{{questions[curIdx].title}}</div>
     <div>
-      <div class="option-button" *ngFor="let q of questions[curIdx].options" (click)="showNextQuestion()">
+      <div class="option-button" *ngFor="let q of questions[curIdx].options" (click)="showNextQuestion(q)">
         <div class="option-text">{{q}}</div>
       </div>
     </div>
