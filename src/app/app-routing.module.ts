@@ -4,12 +4,14 @@ import {RegistrationComponent} from "./components/registration/registration.comp
 import {SurveyComponent} from "./components/survey/survey.component";
 import {RecommendationComponent} from "./components/specialists/recommendation.component";
 import {AuthenticationComponent} from "./components/authentication/authentication.component";
+import {ProfileComponent} from "./components/profile/profile.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/survey', pathMatch: 'full'},
-  { path: 'survey', component: SurveyComponent},
-  { path: 'signup', component: RegistrationComponent},
   { path: 'signin', component: AuthenticationComponent},
+  { path: 'signup', component: RegistrationComponent},
+  { path: 'profile', component: ProfileComponent},
+  { path: 'survey', component: SurveyComponent},
   { path: 'specialists', component: RecommendationComponent}
 ];
 

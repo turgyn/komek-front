@@ -7,7 +7,7 @@
     <img class="profile-logo" src="assets/profile.png" alt="Profile" />
     <div class="profile-text">Войти</div>
   </div>
-  <div class="login-box" *ngIf="isLogged()">
+  <div class="login-box" *ngIf="isLogged()" routerLink="/profile">
     <img class="profile-logo" src="assets/profile.png" alt="Profile" />
     <div class="profile-text">{{getFullName()}}</div>
   </div>

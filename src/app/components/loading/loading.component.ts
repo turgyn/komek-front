@@ -22,6 +22,7 @@ export class LoadingComponent {
   }
 
   recursiveUpdater(): void {
+    if (this.router.url != '/signup' && this.router.url != '/specialists') return;
     if (this.idx == this.texts.length) {
       this.router.navigate(['specialists'])
       return;

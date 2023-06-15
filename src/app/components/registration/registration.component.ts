@@ -18,7 +18,7 @@ export class RegistrationComponent {
 
   registrationForm = new FormGroup({
     phoneNumber: new FormControl('', [Validators.required, Validators.pattern("(\\+7 \\(7)[0-9]{2}(\\)\\-)[0-9]{3}(\\-)[0-9]{2}(\\-)[0-9]{2}")]),
-    fullName: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(30)]),
+    fullName: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(30)]),
     password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.pattern("^(?=.*?[A-Za-z])(?=.*?[0-9]).{8,}$")]),
   })
 
@@ -65,7 +65,7 @@ export class RegistrationComponent {
 
   getFullNameErrorMessage() {
     if (this.registrationForm.controls.fullName.hasError('required')) return ''
-    if (this.registrationForm.controls.fullName.hasError('minlength')) return 'Минимальная длина поля: 5';
+    if (this.registrationForm.controls.fullName.hasError('minlength')) return 'Минимальная длина поля: 4';
     if (this.registrationForm.controls.fullName.hasError('maxlength')) return 'Максимальная длина поля: 20';
     return '';
   }
