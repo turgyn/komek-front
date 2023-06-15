@@ -1,4 +1,5 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {Component} from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-loading',
@@ -9,18 +10,20 @@ export class LoadingComponent {
 
   loadText?: string;
 
-  texts = ['Создаем вам новый профиль...', 'Подбираем подходящих специалистов...', 'Еще чуть чуть ...'];
+  texts = ['...'];
   idx = 0;
 
-  @Output() nextStage = new EventEmitter();
-
-  constructor() {
+  constructor(private router: Router) {
+    if (this.router.url == '/signup')
+      this.texts = ['Создаем вам новый профиль...']
+    else if (this.router.url == '/specialists')
+      this.texts = ['Подбираем подходящих специалистов...', 'Еще чуть чуть ...']
     this.recursiveUpdater();
   }
 
   recursiveUpdater(): void {
     if (this.idx == this.texts.length) {
-      this.nextStageEmit();
+      this.router.navigate(['specialists'])
       return;
     }
     this.loadText = this.texts[this.idx];
@@ -28,10 +31,6 @@ export class LoadingComponent {
     setTimeout(() => {
       this.recursiveUpdater();
     }, 2000);
-  }
-
-  nextStageEmit() {
-    this.nextStage.emit()
   }
 
 }

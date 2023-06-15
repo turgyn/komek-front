@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import {SpecialistService} from "../../services/specialist.service";
 import {Specialist} from "../../models/specialist";
-import {MatDialog, MatDialogRef, MatDialogConfig, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {ApplicationComponent} from "../application/application.component";
+import {Router} from "@angular/router";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-recommendation',
@@ -11,14 +13,19 @@ import {ApplicationComponent} from "../application/application.component";
 })
 export class RecommendationComponent {
 
-  wtText: string = 'Добрый день, мне порекомендовали вас из сервиса \'KOMEK\'. Я бы хотел(а) обсудить ...';
-  wtPhone: string = '87072255009'
   dialogRef?: MatDialogRef<ApplicationComponent>
+  isLoading = true;
 
   specialists: Specialist[];
 
-  constructor(private specialistService: SpecialistService, public dialog: MatDialog) {
+  constructor(private specialistService: SpecialistService, public dialog: MatDialog, private router: Router, private authService: AuthService) {
+    if (!this.authService.isLogged()) {
+      this.router.navigate(['survey'])
+    }
     this.specialists = specialistService.getSpecialists();
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 2000)
   }
 
   openDialog(): void {
@@ -32,15 +39,6 @@ export class RecommendationComponent {
     this.dialogRef.afterClosed().subscribe(res => {
       console.log(res);
     })
-    // const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
-    //   width: '250px',
-    //   data: {name: this.name, animal: this.animal}
-    // });
-    //
-    // dialogRef.afterClosed().subscribe(result => {
-    //   console.log('The dialog was closed');
-    //   this.animal = result;
-    // });
   }
 
 }

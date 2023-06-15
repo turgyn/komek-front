@@ -1,18 +1,15 @@
-<div class="page-body">
+<app-loading *ngIf="isLoading"></app-loading>
+<div class="page-body" *ngIf="!isLoading">
   <div class="best-match-box align-center">
     <div class="match-title">Самый подходящий под вашу анкету психолог</div>
     <div class="match-box">
       <div class="match-left">
         <img class="spec-img" src="assets/{{specialists[0].image}}">
-<!--        <a href="//api.whatsapp.com/send?phone={{wtPhone}}&text={{wtText}}">-->
           <button class="btn-chat" (click)="openDialog()">
-<!--            <img class="wt-logo" src="../../../assets/wt.png">-->
             <div class="wt-text">
               Выбрать
             </div>
           </button>
-<!--        </a>-->
-
       </div>
       <div class="match-right">
 

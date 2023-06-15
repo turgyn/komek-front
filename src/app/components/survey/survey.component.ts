@@ -1,6 +1,8 @@
-import {Component, Output, EventEmitter, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {QuestionService} from "../../services/question.service";
 import {Question} from "../../models/question";
+import {Router} from "@angular/router";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-survey',
@@ -12,10 +14,8 @@ export class SurveyComponent implements OnInit{
   help_yourself = 'Помогите нам подобрать вам подходящего терапевта.'
   questions: Question[] = [{title: 't', options: []}]; //Question[] = []
   curIdx = 0
-  @Output() startRegistrationEvent = new EventEmitter();
 
-
-  constructor(private questionService: QuestionService) {
+  constructor(private questionService: QuestionService, private router: Router, private authService: AuthService) {
   }
 
   ngOnInit(): void {
@@ -34,8 +34,10 @@ export class SurveyComponent implements OnInit{
   }
 
   startRegistration(): void {
-    this.startRegistrationEvent.emit();
+    if (this.authService.isLogged())
+      this.router.navigate(['specialists'])
+    else
+      this.router.navigate(['signup']);
   }
-
 
 }

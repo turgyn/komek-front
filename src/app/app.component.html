@@ -1,6 +1,8 @@
 <header>
-  <img class="logo" src="assets/logo.png" alt="Logo" />
-  <div class="logo-text">KOMEK</div>
+  <div class="logo" routerLink="/">
+    <img class="logo-img" src="assets/logo.png" alt="Logo" />
+    <div class="logo-text">KOMEK</div>
+  </div>
   <div class="login-box" *ngIf="!isLogged()">
     <img class="profile-logo" src="assets/profile.png" alt="Profile" />
     <div class="profile-text">Войти</div>
@@ -10,7 +12,4 @@
     <div class="profile-text">{{getFullName()}}</div>
   </div>
 </header>
-<app-survey *ngIf="stage == 1" (startRegistrationEvent)="nextStage()"></app-survey>
-<app-registration *ngIf="stage == 2" (endRegistrationEvent)="nextStage()"></app-registration>
-<app-loading *ngIf="stage == 3" (nextStage)="nextStage()"></app-loading>
-<app-recommendation *ngIf="stage == 4"></app-recommendation>
+<router-outlet></router-outlet>

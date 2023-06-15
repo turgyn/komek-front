@@ -1,6 +1,6 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {Component} from '@angular/core';
 import {AuthService} from "../../services/auth.service";
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-registration',
@@ -9,12 +9,12 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 })
 export class RegistrationComponent {
 
-  @Output() endRegistrationEvent = new EventEmitter();
   title: string = 'Даваите создадим профиль'
   hidePassword = true;
   registrationErrors = '';
+  isLoading = false;
 
-  constructor(private authService: AuthService, private formBuilder: FormBuilder) {}
+  constructor(private authService: AuthService) {}
 
   registrationForm = new FormGroup({
     phoneNumber: new FormControl('', [Validators.required, Validators.pattern("(\\+7 \\(7)[0-9]{2}(\\)\\-)[0-9]{3}(\\-)[0-9]{2}(\\-)[0-9]{2}")]),
@@ -32,7 +32,7 @@ export class RegistrationComponent {
     }
     this.authService.signup(phoneNumber, fullName, password).subscribe(
       res => {
-        this.endRegistrationEvent.emit();
+        this.isLoading = true;
       }, error => {
         console.log(error);
         if (error.error.message == 'Error: PhoneNumber is already taken!') {

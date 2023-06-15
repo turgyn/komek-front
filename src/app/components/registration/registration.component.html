@@ -1,4 +1,6 @@
-<div class="survey-body">
+<app-loading *ngIf="isLoading"></app-loading>
+
+<div class="survey-body" *ngIf="!isLoading">
   <div class="title-box">
     <p>Удобная и доступная терапия с <span class="neon-green">Komek.</span></p>
   </div>
