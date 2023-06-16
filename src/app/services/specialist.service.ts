@@ -26,6 +26,14 @@ export class SpecialistService {
     }))
   }
 
+  scheduleSession(specId: number) {
+    return this.http.post<any>(this.apiUrl, {
+      specialistId: specId
+    }, {
+      headers: {"Authorization": this.authService.currentUser!.jwt}
+    })
+  }
+
   getSpecialists1(): Specialist[] {
     var arr = [
       {

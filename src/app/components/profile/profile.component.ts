@@ -42,6 +42,7 @@ export class ProfileComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log('sumbitting')
     var phoneNumber = this.userForm.value.phoneNumber;
     var fullName = this.userForm.value.fullName;
     var password = this.userForm.value.password;
@@ -55,14 +56,17 @@ export class ProfileComponent implements OnInit {
         this.isLoading = true;
         this.userForm.controls.password.setValue('');
         this.userForm.controls.passwordNew.setValue('');
-        this.snackBar.open('Изменения внесены')
+        this.snackBar.open('Изменения внесены', '', {
+          duration: 2000
+        })
       }, error => {
-        console.log(error);
-        if (error.error.message == 'Error: PhoneNumber is already taken!') {
+        console.log('look')
+        console.log(error.error.message);
+        if (error.error.message == 'PhoneNumber is already taken!') {
           this.registrationErrors = 'phoneNumberTaken';
           console.warn("phone number already used error");
         }
-        if (error.error.message == 'password incorrect') {
+        else if (error.error.message == 'password incorrect') {
           this.userForm.controls.password.setErrors({'passwordIncorrect': true})
         }
         else {
