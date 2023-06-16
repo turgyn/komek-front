@@ -25,7 +25,9 @@ export class ApplicationComponent {
 
   confirmClick() {
     this.closeDialog();
-    this.snackBar.open('Отправлено')
+    this.snackBar.open('Отправлено', '', {
+      duration: 2000
+    })
   }
 
   closeApplication() {
